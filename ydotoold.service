@@ -1,0 +1,12 @@
+[Unit]
+Description=ydotool deamon, virtual input
+After=display-manager.service
+
+[Service]
+ExecStart=/usr/bin/ydotoold
+RemainAfterExit=no
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
