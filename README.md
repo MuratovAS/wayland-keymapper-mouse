@@ -1,11 +1,11 @@
 # wayland-keymapper-mouse
 
-Небольшой скрипт для переназначения клавиш мыши на пользовательские действия. Скрипт разработан для личного пользования. Для функционирования требует `libinput` и `ydotool`.
+Небольшой скрипт для переназначения клавиш мыши на пользовательские действия. Скрипт разработан для личного пользования. Для функционирования требует `libinput` и `ydotool`. Предпосылкой к данному решению послужили проблемы с `key-mapper-git`, сбои при загрузки системы, отвал usb устройств. 
 
 Тестирование проводилось на:
-OS: Manjaro Linux
-WM: Sway
-Mouse: Logitech MX Master 2S
+ - OS: Manjaro Linux
+ - WM: Sway
+ - Mouse: Logitech MX Master 2S
 
 ### Как это работает
 
@@ -27,6 +27,17 @@ Mouse: Logitech MX Master 2S
 
 ~~~bash
 sudo micro /etc/logitech-master-mx2/config
+~~~
+
+Пример конфигурационного файла:
+
+~~~bash
+#!/bin/bash
+EVENT_SIDE1="ydotool key ctrl+alt+shift+s"
+EVENT_SIDE2="ydotool key ctrl+alt+shift+a"
+EVENT_SCROLL_UP="ydotool key ctrl+alt+shift+w"
+EVENT_SCROLL_DOWN="ydotool key ctrl+alt+shift+q"
+EVENT_THUMB="ydotool key ctrl+alt+shift+z"
 ~~~
 
 ### Установка
