@@ -1,10 +1,10 @@
 [Unit]
-Description=Mouse button mapping for Logitech Master MX2
+Description=Mouse button mapping for Logitech Master
 After=ydotoold.service
 
 [Service]
 Type=idle
-ExecStart=/usr/bin/logitech-master-mx2 "/etc/logitech-master-mx2/config"
+ExecStart=/usr/bin/logitech-master "/etc/logitech-master/config"
 RemainAfterExit=no
 Restart=on-failure
 RestartSec=5s

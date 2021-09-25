@@ -22,12 +22,12 @@ function scrollCommand(){
 	device=$1; vert=$2; horiz=$3
 	if [ ${horiz} != "0.00/0" ]; then
 		#echo "Scroll horiz [" $device "/" $horiz "]"
-		if [ ${horiz} = "15.00/1*" ]; then
+		if [[ ${horiz} = "-15.00"* ]]; then
 			echo "SCROLL_HORIZ_UP"
 			######
 			$EVENT_SCROLL_UP
 			######
-		elif [ ${horiz} = "-15.00/-1*" ]; then
+		elif [[ ${horiz} = "15.00"* ]]; then
 			echo "SCROLL_HORIZ_DOWN"
 			#####
 			$EVENT_SCROLL_DOWN
@@ -60,7 +60,7 @@ function parseEventLine(){
 		button=$4
 		key_state=$6
 		pressCommand ${device} ${button} ${key_state}
-	elif [ ${action} = "POINTER_AXIS" ]; then
+	elif [ ${action} = "POINTER_SCROLL_WHEEL" ]; then
 		vert=$5
 		horiz=$7
 		scrollCommand ${device} ${vert} ${horiz}
@@ -87,7 +87,7 @@ function mapDevice(){
 }
 
 echo "Scan device"
-readarray -t devices <<<$(libinput list-devices | grep pointer -B4 | grep "Logitech MX Master 2S" -A1 | grep -o '/dev/input/event[0-9]*')
+readarray -t devices <<<$(libinput list-devices | grep pointer -B4 | grep "Logitech MX Master 3" -A1 | grep -o '/dev/input/event[0-9]*')
 for device in ${devices[@]}; do
 	( mapDevice ${device} ) &
 done
